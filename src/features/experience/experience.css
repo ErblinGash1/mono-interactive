@@ -1,0 +1,132 @@
+.hero {
+  position: relative;
+  background: radial-gradient(ellipse at 75% 42%, #1c1f222b, transparent 60%);
+}
+.hero-topline, .hero-bottomline {
+  display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
+  color: var(--color-muted);
+}
+.hero-topline { padding-top: 2rem; }
+.hero-main {
+  display: grid; grid-template-columns: 1.05fr 1fr; align-items: center;
+  min-height: min(690px, 76svh); padding-top: 2rem; gap: 0.75rem;
+}
+.hero-copy { position: relative; z-index: 2; padding-block: 2rem; }
+.hero-copy h1 {
+  margin: 1.65rem 0 1.75rem;
+  font-size: clamp(3.9rem, 6.8vw, 7rem); font-weight: 500;
+  line-height: 1.02; letter-spacing: -0.075em;
+}
+.hero-copy h1 span { color: var(--color-ember); }
+.hero-description {
+  max-width: 350px; color: var(--color-muted);
+  font-size: 0.9rem; line-height: 1.85; letter-spacing: -0.015em;
+}
+.hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 1.5rem; margin-top: 2rem; }
+.hero-caption { display: flex; align-items: center; gap: 0.9rem; margin-top: 3.5rem; color: var(--color-muted); font-size: 0.56rem; }
+.caption-line { width: 24px; height: 1px; background: var(--color-ember); }
+.hero-bottomline { min-height: 85px; border-top: 1px solid var(--color-line); font-size: 0.56rem; }
+.scroll-cue { display: inline-flex; align-items: center; gap: 0.75rem; min-height: 44px; transition: color var(--motion-fast); }
+.scroll-cue > span { font-size: 1.1rem; color: var(--color-paper); }
+
+.scene-stage { position: relative; min-width: 0; height: 520px; isolation: isolate; }
+.stage-grid {
+  position: absolute; inset: 12% -1rem 12%;
+  background-image: linear-gradient(#7075790c 1px, transparent 1px), linear-gradient(90deg, #7075790c 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse, #000 10%, transparent 70%);
+  pointer-events: none;
+}
+.stage-cross { position: absolute; color: #6c7074; font: 300 1rem var(--font-mono); }
+.stage-cross-start { top: 12%; left: 8%; }
+.stage-cross-end { bottom: 22%; right: 5%; }
+.stage-index {
+  position: absolute; inset: 23% 0 auto; z-index: -1;
+  font-size: clamp(5rem, 10.5vw, 10rem); font-weight: 500; line-height: 1;
+  letter-spacing: -0.08em; color: #1b1d20; text-align: center; white-space: nowrap;
+  user-select: none;
+}
+.scene-viewport { position: absolute; inset: 0 -2rem 90px; }
+.scene-viewport::before {
+  content: ''; position: absolute; inset: 55% 10% 6%;
+  border-radius: 50%; background: radial-gradient(ellipse, #000b, transparent 65%);
+  filter: blur(16px); transform: rotate(-12deg); pointer-events: none;
+}
+.product-scene { position: relative; width: 100%; height: 100%; }
+.canvas-wrap { position: absolute; inset: 0 0 45px; cursor: grab; touch-action: pan-y; }
+.canvas-wrap:active { cursor: grabbing; }
+/* Drei connects OrbitControls to R3F's event wrapper, not only the canvas.
+   Both must allow vertical panning; an ancestor's `none` blocks native scroll. */
+.canvas-wrap > div, .canvas-wrap canvas { touch-action: pan-y !important; }
+.scene-controls {
+  position: absolute; bottom: 0; left: 15%; right: 10%;
+  display: flex; justify-content: flex-end; align-items: center; gap: 1rem;
+}
+.scene-hint { margin-right: auto; font-size: 0.53rem; color: var(--color-muted); letter-spacing: 0.04em; }
+.scene-control {
+  display: inline-flex; align-items: center; gap: 0.5rem; min-height: 44px;
+  border: 0; border-bottom: 1px solid #373a3e; padding: 0;
+  background: transparent; color: var(--color-muted);
+  font-family: var(--font-mono); font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.04em;
+}
+.scene-control:hover, .scene-control[aria-pressed='true'] { color: var(--color-ember); }
+.scene-control:disabled { opacity: 0.45; }
+.scene-control span { font-size: 1rem; }
+.stage-caption {
+  position: absolute; bottom: 1.25rem; left: 10%; right: 5%;
+  display: flex; justify-content: space-between; align-items: flex-end; gap: 0.5rem;
+}
+.stage-caption .eyebrow { font-size: 0.55rem; }
+.stage-caption p { margin-top: 0.3rem; font-size: 0.75rem; color: var(--color-muted); }
+.product-badge { border: 1px solid var(--color-line); padding: 0.35rem 0.5rem; color: var(--color-muted); white-space: nowrap; }
+
+.scene-fallback { position: absolute; inset: 0; display: grid; place-items: center; perspective: 900px; pointer-events: none; }
+.fallback-keyboard {
+  width: 94%; height: auto; overflow: visible;
+  transform: rotateX(28deg) rotateZ(-10deg);
+  filter: drop-shadow(0 28px 18px #0009);
+}
+.scene-unavailable { position: absolute; bottom: 0.75rem; width: 100%; text-align: center; color: var(--color-muted); font-size: 0.55rem; }
+
+@media (min-width: 1440px) {
+  .hero-main { min-height: 720px; }
+  .scene-stage { height: 580px; }
+}
+@media (max-width: 1100px) and (min-width: 768px) {
+  .hero-main { grid-template-columns: 1.1fr 1fr; }
+  .hero-copy h1 { font-size: clamp(3.5rem, 6.8vw, 5rem); }
+  .hero-actions { gap: 0.65rem; }
+  .hero-caption { margin-top: 2rem; }
+  .scene-stage { height: 470px; }
+  .scene-hint { display: none; }
+  .scene-controls { justify-content: center; }
+  .stage-caption { left: 5%; }
+  .product-badge { display: none; }
+  .hero-bottom-index { display: none; }
+}
+@media (max-width: 767px) {
+  .hero-topline { padding-top: 1.6rem; font-size: 0.52rem; letter-spacing: 0.05em; }
+  .hero-edition { display: none; }
+  .hero-main { grid-template-columns: 1fr; gap: 0; min-height: 0; padding-top: 1rem; }
+  .hero-copy { padding: 2.2rem 0 0; }
+  .hero-copy h1 { font-size: clamp(3.9rem, 12.5vw, 6.5rem); margin-block: 1.25rem 1.5rem; }
+  .hero-description { max-width: 360px; font-size: 0.875rem; }
+  .hero-actions { gap: 1.25rem; margin-top: 1.75rem; }
+  .hero-caption { display: none; }
+  .scene-stage { height: clamp(360px, 95vw, 490px); margin-top: 0.75rem; }
+  .scene-viewport { inset: -10px -1rem 80px; }
+  .stage-index { font-size: clamp(6rem, 25vw, 10rem); }
+  .stage-caption { left: 0; right: 0; }
+  .stage-cross-start { top: 14%; left: 0; }
+  .stage-cross-end { right: 0; }
+  .scene-controls { left: 8%; right: 8%; }
+  .scene-hint { font-size: 0; }
+  .scene-hint::after { content: 'Drag to orbit'; font-size: 0.53rem; }
+  .hero-bottomline { min-height: 72px; font-size: 0.5rem; gap: 0.75rem; }
+  .hero-bottom-index { display: none; }
+}
+@media (max-width: 359px) {
+  .hero-copy h1 { font-size: 3.5rem; }
+  .scene-hint { display: none; }
+  .hero-bottomline > span { display: none; }
+}

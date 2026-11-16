@@ -1,0 +1,21 @@
+/* Shared source of truth; Tailwind generates utilities from these theme tokens. */
+@theme {
+  --font-sans: 'Space Grotesk Variable', 'Arial', sans-serif;
+  --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+  --color-ink: #0b0c0d;
+  --color-surface: #111315;
+  --color-graphite: #1a1d20;
+  --color-paper: #eeede9;
+  --color-muted: #9b9c9e;
+  --color-ember: #f17c50;
+  --color-line: #2b2d30;
+}
+
+:root {
+  color-scheme: dark;
+  --page-gutter: clamp(1.25rem, 4.5vw, 5.5rem);
+  --page-max: 1600px;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --motion-fast: 180ms;
+  --motion-medium: 400ms;
+}
